@@ -10,14 +10,18 @@ def add_circle( points, cx, cy, cz, r, step ):
         add_point(points, x_cor, y_cor, cz)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    for t in range(1, 100, step):
+    t = 0
+    
+    while t < 100:
 
         xs = generate_curve_coefs(x0, x1, x2, x3, curve_type)[0]
-        ys = generate_curve_coefs(y1, y1, y2, y3, curve_type)[0]
+        ys = generate_curve_coefs(y0, y1, y2, y3, curve_type)[0]
 
         x_cor = xs[0]*((t/100)**3) + xs[1]*((t/100)**2) + xs[2]*(t/100) + xs[3]
         y_cor = ys[0]*((t/100)**3) + ys[1]*((t/100)**2) + ys[2]*(t/100) + ys[3]
-        add_point(points, x_cor, y_cor, cz)
+        add_point(points, x_cor, y_cor, 0)
+
+        t += step
 
 
 

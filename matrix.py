@@ -14,7 +14,7 @@ def make_bezier():
     return inverse
 
 def make_hermite():
-    inverse = [[2, -2, 1, 1], [-3, 3, -2, -1], [0, 0, 1, 0], [1, 0, 0, 0]]
+    inverse = [[2, -3, 0, 1], [-2, 3, 0, 0], [1, -2, 1, 0], [1, -1, 0, 0]]
     return inverse
 
 def generate_curve_coefs( p0, p1, p2, p3, t ):
@@ -25,9 +25,11 @@ def generate_curve_coefs( p0, p1, p2, p3, t ):
     elif t == 'bezier':
         curvy_matrix = make_bezier()
 
-    points = [[p1,p2,p3,p4]]
+    points = [[p0,p1,p2,p3]]
 
     matrix_mult(curvy_matrix, points)
+
+    return points
 
 
 def make_translate( x, y, z ):
